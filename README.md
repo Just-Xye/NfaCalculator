@@ -1,0 +1,2 @@
+# NfaCalculator
+School Project
