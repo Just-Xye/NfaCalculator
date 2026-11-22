@@ -1,7 +1,7 @@
 # NFA Arithmetic Recognizer School Project – Presentation Notes
 
 ## How to run
-1. Install the .NET 8 SDK (Windows).
+1. Install the .NET 10 SDK (Windows).
 2. Put all the files in one folder.
 3. `dotnet run` – the window opens.
 
