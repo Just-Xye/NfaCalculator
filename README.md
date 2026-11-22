@@ -1,19 +1,44 @@
-# NFA Arithmetic Recognizer School Project – Presentation Notes
+# NFA Arithmetic Recognizer – Presentation Notes
+# School Project - BSCS 2K
 
 ## How to run
 1. Install the .NET 10 SDK (Windows).
-2. Put all the files in one folder.
+2. Keep the folder layout shown below.
 3. `dotnet run` – the window opens.
 
-## Walk through the files in this order
+## Project structure
+```
+NfaCalculator/
+├── NfaCalculator.csproj
+├── Program.cs                  ← entry point, opens the window
+├── PRESENTATION_NOTES.md
+│
+├── Automata/                   ← the theory
+│   ├── State.cs                  (1. states, transitions, Nfa)
+│   ├── NfaBuilder.cs             (2. Thompson construction + the grammar)
+│   └── NfaSimulator.cs           (3. running the NFA)
+│
+├── Analysis/
+│   └── OrderOfOperations.cs      (4. ambiguity / groupings)
+│
+└── UI/
+    └── MainForm.cs               (5. the window)
+```
 
-| # | File | One-sentence pitch |
-|---|------|--------------------|
-| 1 | `State.cs` | An NFA is states plus arrows; `ε` arrows and multiple matching arrows make it non-deterministic. |
-| 2 | `NfaBuilder.cs` | Thompson's construction: build tiny machines and glue them with ε-arrows. The language is defined in `BuildArithmeticExpression()`. |
-| 3 | `NfaSimulator.cs` | Track a *set* of active states; each character moves all of them at once, then take the ε-closure. |
-| 4 | `OrderOfOperations.cs` | The NFA ignores precedence, so one string has many valid readings – we list them all. |
-| 5 | `MainForm.cs` | The window. UI only. |
+**Important:** every `.cs` file must keep `namespace NfaDemo;` on line 3. Some editors rewrite the namespace to match the folder when a file is moved. If you see "type or namespace 'MainForm' could not be found", check that first.
+
+## Walk through the folders in this order
+
+| # | Folder / File | One-sentence pitch |
+|---|---------------|--------------------|
+| 1 | `Automata/State.cs` | An NFA is states plus arrows; `ε` arrows and multiple matching arrows make it non-deterministic. |
+| 2 | `Automata/NfaBuilder.cs` | Thompson's construction: build tiny machines and glue them with ε-arrows. The language is defined in `BuildArithmeticExpression()`. |
+| 3 | `Automata/NfaSimulator.cs` | Track a *set* of active states; each character moves all of them at once, then take the ε-closure. |
+| 4 | `Analysis/OrderOfOperations.cs` | The NFA ignores precedence, so one string has many valid readings – we list them all. |
+| 5 | `UI/MainForm.cs` | The window. UI only, no automata logic. |
+| – | `Program.cs` | Entry point. Opens `MainForm`. |
+
+Suggested line for the audience: *"Automata is the theory, Analysis is the ambiguity, UI is just the window."*
 
 ## The language
 ```
